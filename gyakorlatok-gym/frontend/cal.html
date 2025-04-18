@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalóriaszükséglet Kiszámító</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    header {
+        background-color: #333;
+        color: white;
+        padding: 10px 0;
+        text-align: center;
+    }
+    nav {
+        background-color: #444;
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+    }
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 14px 20px;
+        margin: 0 10px;
+        font-size: 18px;
+    }
+    nav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+    img {
+        width: 10%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
+    section {
+        padding: 20px;
+        margin: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    footer {
+        text-align: center;
+        padding: 10px;
+        background-color: #333;
+        color: white;
+        position: fixed;
+        width: 100%;
+        bottom:
+         0;
+    }
+    video {
+        width: 10%;  
+        height: auto; 
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <h1>Kalóriaszükséglet</h1>
+    </header>
+    <nav>
+        <a href="index.html">Rólunk</a>
+        <a href="gyak.html">Gyakorlatok</a>
+        <a href="kaja.html">Kaloriabázis</a>
+        <a href="cal.html">Kalóriaszükséglet</a>
+        <a href="bmi.html">BMI</a>
+        <a href="ranked.html">Ranked</a>
+        
+    </nav>
+  <div class="container">
+    <h1>Kalóriaszükséglet Kiszámító</h1>
+    
+    <label for="age">Kor (évek):</label>
+    <input type="number" id="age" required><br>
+
+    <label for="weight">Testsúly (kg):</label>
+    <input type="number" id="weight" required><br>
+
+    <label for="height">Magasság (cm):</label>
+    <input type="number" id="height" required><br>
+
+    <label for="gender">Nem:</label>
+    <select id="gender">
+      <option value="female">o</option>
+      <option value="male">.i.</option>
+      <option value="other">Más</option>
+    </select><br>
+
+    <label for="activity">Aktivitási szint:</label>
+    <select id="activity">
+      <option value="1.2">Ülő életmód</option>
+      <option value="1.375">Könnyű aktivitás</option>
+      <option value="1.55">Mérsékelt aktivitás</option>
+      <option value="1.725">Magas aktivitás</option>
+      <option value="1.9">Nagyon magas aktivitás</option>
+    </select><br>
+
+    <button onclick="calculateCalories()">Számold ki!</button>
+    
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateCalories() {
+      
+      const age = document.getElementById('age').value;
+      const weight = document.getElementById('weight').value;
+      const height = document.getElementById('height').value;
+      const gender = document.getElementById('gender').value;
+      const activity = document.getElementById('activity').value;
+
+      
+      if (!age || !weight || !height) {
+        alert("Minden mezőt ki kell tölteni!");
+        return;
+      }
+
+      let BMR;
+
+      
+      if (gender == "female") {
+        BMR = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
+      }
+      
+      else {
+        BMR = 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
+      }
+
+      
+      const TDEE = BMR * activity;
+
+      if( gender == "other") {
+        document.getElementById('result').innerText = `Ugorj le egy hídról`;
+      }
+      else {
+        document.getElementById('result').innerText = `Napi kalóriaszükséglet: ${Math.round(TDEE)} kalória/nap`;
+      }
+      
+    }
+  </script>
+
+</body>
+</html>
