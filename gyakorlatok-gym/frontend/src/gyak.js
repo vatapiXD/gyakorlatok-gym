@@ -16,26 +16,68 @@ const loading3 = async () => {
   const json3 = await response.json();
   return json3;
 }
-const lista = (data) => {
-  const szamozottLista = document.createElement("ol");
-  data.forEach(mell => {
-    const li = document.createElement("li");
-    li.textContent = mell.name;
-    szamozottLista.appendChild(li);
-  });
-  document.body.appendChild(szamozottLista);
-}
-const lista2 = (data2) => {
-  const szamozatlanlista = document.createElement("ul");
-  data2.forEach(hat => {
-    const li = document.createElement("li");
-    li.textContent = hat.name;
-    szamozatlanlista.appendChild(li);
-  });
-  document.body.appendChild(szamozatlanlista);
-}
 
-const tablazat = (data3) => {
+const tablazat1 = (data1) => {
+  const tablazat = document.createElement("table");
+  const HeaderSor = document.createElement("tr");
+  const headers = ["Gyakorlat neve", "Izom megnyúlása", "terhelhetőség"];
+  headers.forEach(headerText => {
+    const headerCella = document.createElement("th");
+    headerCella.textContent = headerText;
+    HeaderSor.appendChild(headerCella);
+  });
+  tablazat.appendChild(HeaderSor);
+
+  data1.forEach(mell => {
+    const sor = document.createElement("tr");
+
+    const nevCella = document.createElement("td");
+    nevCella.textContent = mell.name;
+    sor.appendChild(nevCella);
+
+    const terhelhetosegCella = document.createElement("td");
+    terhelhetosegCella.textContent = mell.terhelhetoseg;
+    sor.appendChild(terhelhetosegCella);
+
+    const megnyulasCella = document.createElement("td");
+    megnyulasCella.textContent = mell.megnyulas;
+    sor.appendChild(megnyulasCella);
+
+    tablazat.appendChild(sor);
+  });
+document.getElementById("app1").appendChild(tablazat);}
+
+  const tablazat2 = (data2) => {
+  const tablazat = document.createElement("table");
+  const HeaderSor = document.createElement("tr");
+  const headers = ["Gyakorlat neve", "Izom megnyúlása", "terhelhetőség"];
+  headers.forEach(headerText => {
+    const headerCella = document.createElement("th");
+    headerCella.textContent = headerText;
+    HeaderSor.appendChild(headerCella);
+  });
+  tablazat.appendChild(HeaderSor);
+
+  data2.forEach(hat => {
+    const sor = document.createElement("tr");
+
+    const nevCella = document.createElement("td");
+    nevCella.textContent = hat.name;
+    sor.appendChild(nevCella);
+
+    const terhelhetosegCella = document.createElement("td");
+    terhelhetosegCella.textContent = hat.terhelhetoseg;
+    sor.appendChild(terhelhetosegCella);
+
+    const megnyulasCella = document.createElement("td");
+    megnyulasCella.textContent = hat.megnyulas;
+    sor.appendChild(megnyulasCella);
+
+    tablazat.appendChild(sor);
+  });
+document.getElementById("app2").appendChild(tablazat);}
+
+const tablazat3 = (data3) => {
   const tablazat = document.createElement("table");
   const HeaderSor = document.createElement("tr");
   const headers = ["Gyakorlat neve", "Izom megnyúlása", "terhelhetőség"];
@@ -64,7 +106,7 @@ const tablazat = (data3) => {
     tablazat.appendChild(sor);
   });
 
-  document.getElementById("app").appendChild(tablazat);
+  document.getElementById("app3").appendChild(tablazat);
 }
 
 const init = async () => {  
